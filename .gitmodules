@@ -1,3 +1,6 @@
 [submodule "users-management-wufwuf"]
 	path = users-management-wufwuf
 	url = https://github.com/paulrojasg/users-management-wufwuf.git
+[submodule "catalog-wufwuf"]
+	path = catalog-wufwuf
+	url = git@github.com:JabColV/catalog-wufwuf.git
