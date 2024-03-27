@@ -3,4 +3,7 @@
 	url = https://github.com/paulrojasg/users-management-wufwuf.git
 [submodule "catalog-wufwuf"]
 	path = catalog-wufwuf
-	url = git@github.com:JabColV/catalog-wufwuf.git
+	url = https://github.com/JabColV/catalog-wufwuf.git
+[submodule "dates-wufwuf"]
+	path = dates-wufwuf
+	url = https://github.com/Hickaro12/dates-wufwuf
