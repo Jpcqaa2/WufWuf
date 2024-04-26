@@ -5,3 +5,6 @@
 	path = catalog-wufwuf
 	url = https://github.com/JabColV/catalog-wufwuf.git
 
+[submodule "scheduling-wufwuf"]
+	path = scheduling-wufwuf
+	url = https://github.com/N4tth/schedule-wufwuf.git
