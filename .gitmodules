@@ -4,6 +4,4 @@
 [submodule "catalog-wufwuf"]
 	path = catalog-wufwuf
 	url = https://github.com/JabColV/catalog-wufwuf.git
-[submodule "schedule-wufwuf"]
-	path = schedule-wufwuf
-	url = https://github.com/N4tth/schedule-wufwuf.git
+
