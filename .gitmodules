@@ -7,3 +7,6 @@
 [submodule "dates-wufwuf"]
 	path = dates-wufwuf
 	url = https://github.com/Hickaro12/dates-wufwuf
+[submodule "scheduling-wufwuf"]
+	path = scheduling-wufwuf
+	url = https://github.com/Jpcqaa2/WufWuf.git
