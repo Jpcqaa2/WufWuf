@@ -10,3 +10,6 @@
 [submodule "scheduling-wufwuf"]
 	path = scheduling-wufwuf
 	url = https://github.com/Jpcqaa2/WufWuf.git
+[submodule "schedule-wufwuf"]
+	path = schedule-wufwuf
+	url = https://github.com/Jpcqaa2/WufWuf.git
