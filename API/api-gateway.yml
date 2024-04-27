@@ -1,0 +1,29 @@
+# apigateway-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: servicio-api-gateway-pod
+  labels:
+    app: servicio-api
+spec:
+  containers:
+    - name: servicio-api-gateway-container
+      image: heroslaver/service-api-project:latest
+      ports:
+        - containerPort: 3000
+---
+
+# apigateway-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicio-api-gateway-service
+spec:
+  type: NodePort
+  selector:
+    app: servicio-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+    nodePort: 31234
