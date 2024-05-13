@@ -12,6 +12,7 @@ COPY ./api.js ./
 RUN npm init -y
 RUN npm install express
 RUN npm install axios
+RUN npm i http-proxy-middleware
 
 # Expone el puerto en el que la aplicación escucha las solicitudes HTTP
 EXPOSE 3000
