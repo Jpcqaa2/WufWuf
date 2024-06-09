@@ -4,7 +4,6 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 
 const PORT1 = 3000;
-const PORT2 = 3001;
 
 // ================== API GATEWAY PARA EL CATÁLOGO ==================
 
@@ -30,15 +29,10 @@ app.use('/api', (req, res, next) => {
     serviceProxyCatalogAll(req, res, next);
 });
 
-// Inicia el servidor en el puerto PORT1
-app.listen(PORT1, () => {
-    console.log(`Servidor Express escuchando en el puerto ${PORT1}`);
-});
-
 // ================== API GATEWAY PARA EL SERVICIO DE AUTENTICACION ==================
 //Define reverse proxy middleware for each microservice
 const serviceProxyUsers = createProxyMiddleware({
-    target: 'http://users-frontend-service:3001',
+    target: 'http://users-frontend-service:3000',
     changeOrigin: true,
   });
 
@@ -49,15 +43,15 @@ app.use('/service-users', serviceProxyUsers);
 
 // Define reverse proxy middleware for each microservice
 const serviceProxyDates = createProxyMiddleware({
-  target: 'http://frontend-dates-service:3001',
+  target: 'http://frontend-dates-service:3000',
   changeOrigin: true,
 });
 
 app.use('/service-dates', serviceProxyDates);
 
 // Escuchar en el puerto
-app.listen(PORT2, () => {
-    console.log(`Servidor Express escuchando en el puerto ${PORT2}`);
+app.listen(PORT1, () => {
+    console.log(`Servidor Express escuchando en el puerto ${PORT1}`);
 });
 
 

@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: servicio-api-gateway-container
-      image: nicolort/wufwuf-api-gateway
+      image: nicolort/wufwuf-api-gateway:latest
       ports:
         - containerPort: 3000
 ---
