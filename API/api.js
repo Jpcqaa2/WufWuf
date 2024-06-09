@@ -1,5 +1,4 @@
 const express = require('express');
-const axios = require('axios');
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
@@ -45,30 +44,20 @@ const serviceProxyUsers = createProxyMiddleware({
 
 app.use('/service-users', serviceProxyUsers);
 
+
+// ================== API GATEWAY PARA EL SERVICIO DE SCHEDULING ==================
+
+// Define reverse proxy middleware for each microservice
+const serviceProxyDates = createProxyMiddleware({
+  target: 'http://frontend-dates-service:3001',
+  changeOrigin: true,
+});
+
+app.use('/service-dates', serviceProxyDates);
+
 // Escuchar en el puerto
 app.listen(PORT2, () => {
     console.log(`Servidor Express escuchando en el puerto ${PORT2}`);
 });
 
-
-// ================== API GATEWAY PARA EL SERVICIO DE SCHEDULING ==================
-app.get('/service-scheduling', async (req, res) => {
-    try {
-        const response = await axios.get('http://frontend-dates-service');
-        res.json(response.data);
-    } catch (error) {
-        console.error('Error al obtener datos del microservicio scheduling:', error);
-        res.status(500).json({ error: 'Error al obtener datos del microservicio scheduling' });
-    }
-});
-
-app.get('/test2', async (req, res) => {
-    try {
-        const response = await axios.get('http://users-frontend-service:3000');
-        res.send(response.data);
-    } catch (error) {
-        console.error('Error al obtener datos del microservicio scheduling:', error);
-        res.status(500).json({ error: 'Error al obtener datos del microservicio scheduling' });
-    }
-});
 
