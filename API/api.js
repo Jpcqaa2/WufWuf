@@ -22,52 +22,13 @@ app.use('/service-pets', serviceProxyCatalog);
 
 
 // Configura un proxy para redirigir las solicitudes a catalog-front-service/service-pets/api/
-const serviceProxyCatalogPets  = createProxyMiddleware({
-    target: 'http://catalog-front-service:3000/service-pets/api/',
+const serviceProxyCatalogAll  = createProxyMiddleware({
+    target: 'http://catalog-front-service:3000/api/',
     changeOrigin: true,
 });
 app.use('/api', (req, res, next) => {
     // Pasa el cuerpo de la solicitud al proxy
-    serviceProxyCatalogPets(req, res, next);
-});
-
-
-// Configura un proxy para redirigir las solicitudes a catalog-front-service/service-pets/api/:id
-const serviceProxyCatalogPetId = createProxyMiddleware({
-    target: 'http://catalog-front-service:3000/service-pets/api/',
-    changeOrigin: true,
-    pathRewrite: (path, req) => {
-        // Obtenemos el id del parámetro de la ruta
-        const id = req.params.id;
-        // Concatenamos el id a la ruta
-        return `${path}/${id}`;
-    }
-});
-// Usa el proxy para todas las solicitudes a /api/:id
-app.use('/api/:id', (req, res, next) => {
-    serviceProxyCatalogPetId(req, res, next);
-});
-
-
-// Configura un proxy para redirigir las solicitudes a catalog-front-service/service-pets/api/list_all_pets/
-const serviceProxyCatalogPetsAll  = createProxyMiddleware({
-    target: 'http://catalog-front-service:3000/service-pets/api/list_all_pets/',
-    changeOrigin: true,
-});
-app.use('/service-pets/api/list_all_pets/', (req, res, next) => {
-    // Pasa el cuerpo de la solicitud al proxy
-    serviceProxyCatalogPetsAll(req, res, next);
-});
-
-
-// Configura un proxy para redirigir las solicitudes a catalog-front-service/service-pets/api/create_pet/
-const serviceProxyCatalogPetsCreate = createProxyMiddleware({
-    target: 'http://catalog-front-service:3000/service-pets/api/create_pet/',
-    changeOrigin: true,
-});
-app.use('/api/create_pet/', (req, res, next) => {
-    // Pasa el cuerpo de la solicitud al proxy
-    serviceProxyCatalogPetsCreate(req, res, next);
+    serviceProxyCatalogAll(req, res, next);
 });
 
 // Inicia el servidor en el puerto PORT1
@@ -89,6 +50,8 @@ app.listen(PORT2, () => {
     console.log(`Servidor Express escuchando en el puerto ${PORT2}`);
 });
 
+
+// ================== API GATEWAY PARA EL SERVICIO DE SCHEDULING ==================
 app.get('/service-scheduling', async (req, res) => {
     try {
         const response = await axios.get('http://frontend-dates-service');
