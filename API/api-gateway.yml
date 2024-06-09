@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: servicio-api-gateway-container
-      image: heroslaver/service-api-project:latest
+      image: heroslaver/api-gateway
       ports:
         - containerPort: 3000
 ---
